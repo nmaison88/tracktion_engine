@@ -9,8 +9,8 @@
 */
 
 #if JUCE_WINDOWS && TRACKTION_ENABLE_TIMESTRETCH_ELASTIQUE
- #pragma comment (lib, "libelastiqueProV3.lib")
- #pragma comment (lib, "libelastiqueEfficientV3.lib")
+ #pragma comment (lib, "libelastiquePro.lib")
+ #pragma comment (lib, "libelastiqueEfficient.lib")
  #pragma comment (lib, "libelastiqueSOLOIST.lib")
  #pragma comment (lib, "libResample.lib")
  #pragma comment (lib, "libzplVecLib.lib")
