@@ -14,7 +14,9 @@
  #pragma comment (lib, "libelastiqueSOLOIST.lib")
  #pragma comment (lib, "libResample.lib")
  #pragma comment (lib, "libzplVecLib.lib")
+#endif
 
+#if JUCE_WINDOWS && TRACKTION_ENABLE_TIMESTRETCH_ELASTIQUE_IPP
  #pragma comment (lib, "ippcore_l.lib")
  #pragma comment (lib, "ipps_l.lib")
  #pragma comment (lib, "ippvm_l.lib")
