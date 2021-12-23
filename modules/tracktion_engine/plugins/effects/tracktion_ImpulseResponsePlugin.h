@@ -4,7 +4,6 @@
   '-.  .-'|  .--' ,-.  | .--'|     /'-.  .-',--.| .-. ||      \   Tracktion Software
     |  |  |  |  \ '-'  \ `--.|  \  \  |  |  |  |' '-' '|  ||  |       Corporation
     `---' `--'   `--`--'`---'`--'`--' `---' `--' `---' `--''--'    www.tracktion.com
-
     Tracktion Engine uses a GPL/commercial licence - see LICENCE.md for details.
 */
 
@@ -55,10 +54,11 @@ public:
     juce::CachedValue<bool> normalise;              /**< Normalise the IR file when loading from the state. True by default. */
     juce::CachedValue<bool> trimSilence;            /**< Trim silence from the IR file when loading from the state. False by default. */
 
-    AutomatableParameter::Ptr highPassCutoffParam;  /**< Cutoff frequency for the high pass filter to applied after the IR */
-    AutomatableParameter::Ptr lowPassCutoffParam;   /**< Cutoff frequency for the low pass filter to applied after the IR */
+    AutomatableParameter::Ptr highPassCutoffParam;  /**< Cutoff frequency for the high pass filter to be applied after the IR */
+    AutomatableParameter::Ptr lowPassCutoffParam;   /**< Cutoff frequency for the low pass filter to be applied after the IR */
     AutomatableParameter::Ptr gainParam;            /**< Parameter for the gain to apply */
     AutomatableParameter::Ptr mixParam;             /**< Parameter for the mix control, 0.0 = dry, 1.0 = wet */
+    AutomatableParameter::Ptr filterQParam;         /**< Parameter for the Q factor of the high pass and low pass filters */
 
     //==============================================================================
     /** @internal */
@@ -92,17 +92,18 @@ private:
         convolutionIndex,
         HPFIndex,
         LPFIndex,
-        gainIndex
+        gainIndex,
     };
 
     juce::CachedValue<float> gainValue, mixValue;
     juce::CachedValue<float> highPassCutoffValue, lowPassCutoffValue;
+    juce::CachedValue<float> qValue;
 
     juce::dsp::ProcessorChain<juce::dsp::Convolution,
                               juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>,
                               juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>,
                               juce::dsp::Gain<float>> processorChain;
-    juce::SmoothedValue<float> highFreqSmoother, lowFreqSmoother, gainSmoother, wetGainSmoother, dryGainSmoother;
+    juce::SmoothedValue<float> highFreqSmoother, lowFreqSmoother, gainSmoother, wetGainSmoother, dryGainSmoother, qSmoother;
 
     struct WetDryGain { float wet, dry; };    
     static WetDryGain getWetDryLevels (float mix)
@@ -121,3 +122,4 @@ private:
 };
 
 }
+
