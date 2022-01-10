@@ -26,6 +26,8 @@ ImpulseResponsePlugin::ImpulseResponsePlugin (PluginCreationInfo info)
     gainValue.referTo (state, IDs::gain, um, 0.0f);
     mixValue.referTo (state, IDs::mix, um, 1.0f);
     qValue.referTo (state, IDs::filterSlope, um, 1.0f / juce::MathConstants<float>::sqrt2);
+    panValue.referTo (state, IDs::filterSlope, um, 0.0f);
+    delayValue.referTo (state, IDs::filterSlope, um, 0.0f);
 
     normalise.referTo (state, IDs::normalise, um, true);
     trimSilence.referTo (state, IDs::trimSilence, um, false);

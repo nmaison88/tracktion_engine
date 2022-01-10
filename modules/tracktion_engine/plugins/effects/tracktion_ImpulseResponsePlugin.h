@@ -98,12 +98,14 @@ private:
     juce::CachedValue<float> gainValue, mixValue;
     juce::CachedValue<float> highPassCutoffValue, lowPassCutoffValue;
     juce::CachedValue<float> qValue;
+    juce::CachedValue<float> panValue;
+    juce::CachedValue<float> delayValue;
 
     juce::dsp::ProcessorChain<juce::dsp::Convolution,
                               juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>,
                               juce::dsp::ProcessorDuplicator<juce::dsp::IIR::Filter<float>, juce::dsp::IIR::Coefficients<float>>,
                               juce::dsp::Gain<float>> processorChain;
-    juce::SmoothedValue<float> highFreqSmoother, lowFreqSmoother, gainSmoother, wetGainSmoother, dryGainSmoother, qSmoother;
+    juce::SmoothedValue<float> highFreqSmoother, lowFreqSmoother, gainSmoother, wetGainSmoother, dryGainSmoother, qSmoother, panSmoother, delaySmoother;
 
     struct WetDryGain { float wet, dry; };    
     static WetDryGain getWetDryLevels (float mix)
